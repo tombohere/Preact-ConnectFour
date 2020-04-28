@@ -1,3 +1,5 @@
+![Screenshot from 2020-04-28 09-29-44](https://user-images.githubusercontent.com/25521289/80515426-cf74d080-8936-11ea-8bc9-92433fb1369d.png)
+
 ---> [Run App](http://allmyplay.com/projects/connectfour/index.html) <---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
