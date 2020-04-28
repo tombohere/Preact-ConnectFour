@@ -1,7 +1,8 @@
 {
   "name": "preact-connectfour",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "homepage": "http://allmyplay.com/projects/connectfour",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -13,6 +14,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "delete-map-files": "find ./build -name '*.map' -delete",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

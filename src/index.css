@@ -1,13 +1,202 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+:root {
+  --boardColor: rgb(26, 81, 182);
+  --player1Color: rgb(255, 68, 68);
+  --player2Color: rgb(235, 225, 90);
+  --boardWidth: min(94vh, 94vw);
+  --topFontSize: min(6vh, 6vw);
+  --topLineHeight: min(10.3vh, 10.6vw);
+  --gameFontSize: min(10.34vh, 10.34vw);
+  --infoFontSize: min(10vh, 10vw);
+  --msqFontSize: min(20vh, 20vw);
+  --borderRadius: min(2vh, 2vw);
+  --b1: rgb(236, 236, 236);
+  --b2: rgb(219, 219, 219);
+  --b3: rgb(255, 255, 255);
+  --c1: rgb(214, 170, 170);
+  --c2: rgb(211, 128, 128);
+  --c3: rgb(255, 241, 241);
+  --d1: rgb(230, 229, 172);
+  --d2: rgb(241, 234, 136);
+  --d3: rgb(247, 244, 232);
+  --s1: min(1vh, 1vw);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  padding: 0;
+  margin: 0;
+
+}
+
+.App {
+  font-family: 'Fredoka One', cursive;
+  letter-spacing: 0.2em;
+  text-align: center;
+  box-sizing: border-box;
+  user-select: none;
+  height: 100vh;
+  width: 100vw;
+  background-color:var(--b3);
+  background-image: linear-gradient(30deg, var(--b1) 12%, transparent 12.5%, transparent 87%, var(--b1) 87.5%, var(--b1)),
+  linear-gradient(150deg, var(--b1) 12%, transparent 12.5%, transparent 87%, var(--b1) 87.5%, var(--b1)),
+  linear-gradient(30deg, var(--b1) 12%, transparent 12.5%, transparent 87%, var(--b1) 87.5%, var(--b1)),
+  linear-gradient(150deg, var(--b1) 12%, transparent 12.5%, transparent 87%, var(--b1) 87.5%, var(--b1)),
+  linear-gradient(60deg, var(--b2) 25%, transparent 25.5%, transparent 75%, var(--b2) 75%, var(--b2)),
+  linear-gradient(60deg, var(--b2) 25%, transparent 25.5%, transparent 75%, var(--b2) 75%, var(--b2));
+  background-size: calc(var(--s1) * 8)   calc(var(--s1) * 14);
+  background-position: 0 0, 0 0, calc(var(--s1) * 4) calc(var(--s1) * 7), calc(var(--s1) * 4) calc(var(--s1) * 7), 0 0, calc(var(--s1) * 4) calc(var(--s1) * 7);
+}
+
+.AppRed {
+  background-color:var(--c3);
+  background-image: linear-gradient(30deg, var(--c1) 12%, transparent 12.5%, transparent 87%, var(--c1) 87.5%, var(--c1)),
+  linear-gradient(150deg, var(--c1) 12%, transparent 12.5%, transparent 87%, var(--c1) 87.5%, var(--c1)),
+  linear-gradient(30deg, var(--c1) 12%, transparent 12.5%, transparent 87%, var(--c1) 87.5%, var(--c1)),
+  linear-gradient(150deg, var(--c1) 12%, transparent 12.5%, transparent 87%, var(--c1) 87.5%, var(--c1)),
+  linear-gradient(60deg, var(--c2) 25%, transparent 25.5%, transparent 75%, var(--c2) 75%, var(--c2)),
+  linear-gradient(60deg, var(--c2) 25%, transparent 25.5%, transparent 75%, var(--c2) 75%, var(--c2));
+  background-size: calc(var(--s1) * 8)   calc(var(--s1) * 14);
+  background-position: 0 0, 0 0, calc(var(--s1) * 4) calc(var(--s1) * 7), calc(var(--s1) * 4) calc(var(--s1) * 7), 0 0, calc(var(--s1) * 4) calc(var(--s1) * 7);
+}
+
+.AppYellow {
+  background-color:var(--d3);
+  background-image: linear-gradient(30deg, var(--d1) 12%, transparent 12.5%, transparent 87%, var(--d1) 87.5%, var(--d1)),
+  linear-gradient(150deg, var(--d1) 12%, transparent 12.5%, transparent 87%, var(--d1) 87.5%, var(--d1)),
+  linear-gradient(30deg, var(--d1) 12%, transparent 12.5%, transparent 87%, var(--d1) 87.5%, var(--d1)),
+  linear-gradient(150deg, var(--d1) 12%, transparent 12.5%, transparent 87%, var(--d1) 87.5%, var(--d1)),
+  linear-gradient(60deg, var(--d2) 25%, transparent 25.5%, transparent 75%, var(--d2) 75%, var(--d2)),
+  linear-gradient(60deg, var(--d2) 25%, transparent 25.5%, transparent 75%, var(--d2) 75%, var(--d2));
+  background-size: calc(var(--s1) * 8)   calc(var(--s1) * 14);
+  background-position: 0 0, 0 0, calc(var(--s1) * 4) calc(var(--s1) * 7), calc(var(--s1) * 4) calc(var(--s1) * 7), 0 0, calc(var(--s1) * 4) calc(var(--s1) * 7);
+}
+
+#board {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom:0;
+  right:0;
+  margin: auto;
+  height: var(--boardWidth);
+  width: var(--boardWidth);
+  font-size: var(--gameFontSize);
+  background-color: var(--boardColor);
+  border-radius: var(--borderRadius);
+  border: calc(var(--s1) / 2) ridge;
+  box-shadow: rgba(0, 0, 0, 0.9) 0px calc(var(--infoFontSize) / 8) calc(var(--infoFontSize) / 6);
+}
+
+.board-message-container {
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.705);
+  height: 100vh;
+  width: 100vw;
+}
+
+.board-message {
+  display: flex;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: var(--msqFontSize);
+  text-shadow: 2px 2px 8px black;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  cursor: pointer;
+}
+
+.board-container {
+  display: grid;
+  grid-template-rows: 2fr 10fr 1fr 60fr 2fr;
+  width: 100%;
+  height: 100%;
+}
+
+.board-title-area {
+  display: grid;
+  grid-template-columns: 3fr 10fr 60fr 3fr;
+}
+
+#board-info {
+  font-size: var(--infoFontSize);
+  color: white;
+  text-shadow: 0px 0px calc(var(--infoFontSize) / 10) rgba(0, 0, 0, 0.94);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}
+
+.board-game-area {
+  display: grid;
+  grid-template-columns: 2fr repeat(7, 10fr) 2fr;
+}
+
+.board-column {
+  width: 100%;
+  height: 100%;
+}
+
+.board-column-container {
+  display: grid;
+  grid-template-rows: repeat(6, 1fr);
+  position: relative;
+  height: 100%;
+  width: 100%;
+  border-radius: 15vw;
+}
+
+.board-column-container:hover {
+  cursor: pointer;
+  background-image: linear-gradient(
+    rgb(26, 81, 182),
+    rgb(0, 36, 104),
+    rgb(26, 81, 182)
+  );
+}
+
+.board-position {
+  height: 100%;
+  width: 100%;
+}
+
+.board-circle {
+  font-size: 6vw;
+  height: 86%;
+  width: 86%;
+  margin: 7%;
+  background-color: white;
+  border-radius: 200px;
+  box-shadow: rgba(0, 0, 0, 0.9) 0px calc(var(--infoFontSize) / 8) calc(var(--infoFontSize) / 6) inset;
+  box-sizing: border-box;
+}
+
+.top-circle {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  letter-spacing: -0.2vw;
+  font-size: var(--topFontSize);
+  line-height: var(--topLineHeight);
+  overflow: hidden;
+  background-color: rgb(107, 168, 107);
+  cursor: default;
+  box-shadow: rgba(0, 0, 0, 1) 0px calc(var(--infoFontSize) / 15) calc(var(--infoFontSize) / 15);
+}
+
+.game-start {
+  font-size: 3vw;
+}
+
+.player1Color {
+  background-color: var(--player1Color);
+  box-shadow: rgba(0, 0, 0, 0.6) 0px calc(var(--infoFontSize) / 20) calc(var(--infoFontSize) / 15) inset;
+}
+
+.player2Color {
+  background-color: var(--player2Color);
+  box-shadow: rgba(0, 0, 0, 0.6) 0px calc(var(--infoFontSize) / 15) calc(var(--infoFontSize) / 10) inset;
 }
