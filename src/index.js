@@ -36,13 +36,14 @@ const Board = () => {
       player1: true,
       count: 0,
       gameOver: false,
-      playerWin: 0
+      playerWin: 0,
+      mute: false
     };
   }
 
   const startGame = () => setGame({ ...game, gameStarted: true });
 
-  const restartGame = () => setGame({ ...makeBoard(), gameStarted: true });
+  const restartGame = () => setGame({ ...makeBoard(), gameStarted: true, mute: game.mute });
 
   const checkWin = () => {
     let b = game.board;
@@ -72,7 +73,9 @@ const Board = () => {
 
   const colClick = n => {
     if (game.gameStarted && !game.gameOver) {
-      game.player1 ? redclickPlay.play() : yellowclickPlay.play();
+      if(!game.mute) {
+        game.player1 ? redclickPlay.play() : yellowclickPlay.play();
+      }
       let temp = { ...game };
       for (let i = temp.board[n].length - 1; i >= 0; i--) {
         if (temp.board[n][i] === 0) {
@@ -81,11 +84,13 @@ const Board = () => {
           if (checkWin()) {
             temp.gameOver = true;
             temp.playerWin = temp.player1 ? 1 : 2;
-            temp.player1 ? redwinPlay.play() : yellowwinPlay.play();
+            if(!game.mute) {
+              temp.player1 ? redwinPlay.play() : yellowwinPlay.play();
+            }
           } else {
             if (temp.count === 42) {
               temp.gameOver = true;
-              nobodyPlay.play();
+              if (!game.mute) nobodyPlay.play();
             }
             temp.player1 = !temp.player1;
           }
@@ -97,6 +102,10 @@ const Board = () => {
     }
   };
 
+  const toggleSound = () => {
+    setGame({...game, mute: !game.mute});
+  };
+
   const playerColor = n =>
     ({ 0: "", 1: " player1Color", 5: " player2Color" }[n]);
 
@@ -106,8 +115,11 @@ const Board = () => {
   const backColor = () =>
     ({ true: " AppRed", false: " AppYellow" }[game.player1]);
 
+  const getSound = () => ({ true: "🔇", false: "🔊" }[game.mute]);
+
   return (
     <div className={"App" + backColor()}>
+      <div class="volume" onClick={toggleSound}>{getSound()}</div>
       <div id="board">
         <div className="board-container">
           <div />

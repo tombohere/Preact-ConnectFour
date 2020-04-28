@@ -72,6 +72,15 @@ body {
   background-position: 0 0, 0 0, calc(var(--s1) * 4) calc(var(--s1) * 7), calc(var(--s1) * 4) calc(var(--s1) * 7), 0 0, calc(var(--s1) * 4) calc(var(--s1) * 7);
 }
 
+.volume {
+  position: absolute;
+  font-size: calc(var(--infoFontSize));
+  z-index: 999;
+  top: var(--s1);
+  top: var(--s1);
+  left: var(--s1);
+}
+
 #board {
   position: fixed;
   top: 0;
