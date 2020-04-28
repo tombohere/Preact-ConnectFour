@@ -79,6 +79,7 @@ body {
   top: var(--s1);
   top: var(--s1);
   left: var(--s1);
+  cursor: pointer;
 }
 
 #board {
