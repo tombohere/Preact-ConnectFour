@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import redclickURL from './redclick.mmm';
-import yellowclickURL from './yellowclick.mmm';
-import redwinURL from './red.mmm';
-import yellowwinURL from './yellow.mmm';
-import nobodyURL from './nobody.mmm';
+import redclickURL from './media/redclick.mmm';
+import yellowclickURL from './media/yellowclick.mmm';
+import redwinURL from './media/red.mmm';
+import yellowwinURL from './media/yellow.mmm';
+import nobodyURL from './media/nobody.mmm';
 
 const App = () => (
   <div className="App">
