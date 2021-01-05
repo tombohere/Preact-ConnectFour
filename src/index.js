@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import redclickURL from './media/redclick.mmm';
-import yellowclickURL from './media/yellowclick.mmm';
-import redwinURL from './media/red.mmm';
-import yellowwinURL from './media/yellow.mmm';
-import nobodyURL from './media/nobody.mmm';
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import redclickURL from "./media/redclick.mmm";
+import yellowclickURL from "./media/yellowclick.mmm";
+import redwinURL from "./media/red.mmm";
+import yellowwinURL from "./media/yellow.mmm";
+import nobodyURL from "./media/nobody.mmm";
 
 const App = () => (
   <div className="App">
@@ -43,7 +43,8 @@ const Board = () => {
 
   const startGame = () => setGame({ ...game, gameStarted: true });
 
-  const restartGame = () => setGame({ ...makeBoard(), gameStarted: true, mute: game.mute });
+  const restartGame = () =>
+    setGame({ ...makeBoard(), gameStarted: true, mute: game.mute });
 
   const checkWin = () => {
     let b = game.board;
@@ -71,9 +72,9 @@ const Board = () => {
     return false;
   };
 
-  const colClick = n => {
+  const colClick = (n) => {
     if (game.gameStarted && !game.gameOver) {
-      if(!game.mute) {
+      if (!game.mute) {
         game.player1 ? redclickPlay.play() : yellowclickPlay.play();
       }
       let temp = { ...game };
@@ -84,7 +85,7 @@ const Board = () => {
           if (checkWin()) {
             temp.gameOver = true;
             temp.playerWin = temp.player1 ? 1 : 2;
-            if(!game.mute) {
+            if (!game.mute) {
               temp.player1 ? redwinPlay.play() : yellowwinPlay.play();
             }
           } else {
@@ -103,10 +104,10 @@ const Board = () => {
   };
 
   const toggleSound = () => {
-    setGame({...game, mute: !game.mute});
+    setGame({ ...game, mute: !game.mute });
   };
 
-  const playerColor = n =>
+  const playerColor = (n) =>
     ({ 0: "", 1: " player1Color", 5: " player2Color" }[n]);
 
   const circleClass = () =>
@@ -119,7 +120,9 @@ const Board = () => {
 
   return (
     <div className={"App" + backColor()}>
-      <div class="volume" onClick={toggleSound}>{getSound()}</div>
+      <div class="volume" onClick={toggleSound}>
+        {getSound()}
+      </div>
       <div id="board">
         <div className="board-container">
           <div />
@@ -135,10 +138,10 @@ const Board = () => {
           <div />
           <div className="board-game-area">
             <div />
-            {[0, 1, 2, 3, 4, 5, 6].map(i => (
+            {[0, 1, 2, 3, 4, 5, 6].map((i) => (
               <div className="board-column" key={i} onClick={() => colClick(i)}>
                 <div className="board-column-container">
-                  {[0, 1, 2, 3, 4, 5].map(j => (
+                  {[0, 1, 2, 3, 4, 5].map((j) => (
                     <div className="board-position" key={j}>
                       <div
                         className={
@@ -188,5 +191,5 @@ ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
