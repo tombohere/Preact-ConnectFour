@@ -120,7 +120,7 @@ const Board = () => {
 
   return (
     <div className={"App" + backColor()}>
-      <div class="volume" onClick={toggleSound}>
+      <div className="volume" onClick={toggleSound}>
         {getSound()}
       </div>
       <div id="board">
